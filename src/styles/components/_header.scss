@@ -1,0 +1,224 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header-top {
+  display: none;
+
+  @include laptop-up {
+    display: block;
+    background-color: $oxford-blue-1;
+    color: $white;
+    padding-block: 20px;
+
+    :is(.container, .social-list),
+    .contact-list,
+    .contact-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .container {
+      justify-content: space-between;
+    }
+
+    .social-list {
+      gap: 15px;
+    }
+
+    .social-link {
+      font-size: $fs-6;
+      transition: $transition;
+
+      &:is(:hover, :focus-visible) {
+        color: $royal-blue-light;
+      }
+    }
+  }
+}
+
+.contact-list {
+  @include laptop-up {
+    gap: 20px;
+  }
+
+  @include xl-desktop-up {
+    gap: 30px;
+  }
+}
+
+.contact-item {
+  @include laptop-up {
+    gap: 5px;
+  }
+}
+
+.contact-link {
+  @include laptop-up {
+    font-size: 1.5rem;
+  }
+}
+
+.header-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-block: 15px;
+  z-index: 4;
+  transition:
+    background-color $transition,
+    box-shadow $transition;
+
+  @include laptop-up {
+    top: 58px;
+    padding-block: 20px;
+    background-color: transparent;
+  }
+
+  &.active {
+    position: fixed;
+    top: -81px;
+    background-color: $white;
+    box-shadow: $shadow-2;
+    animation: slideIn 0.5s $cubic-out forwards;
+
+    @include laptop-up {
+      top: -95px;
+    }
+  }
+
+  > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    @include xl-desktop-up {
+      gap: 40px;
+    }
+  }
+
+  .btn {
+    display: none;
+
+    @include laptop-up {
+      display: block;
+      padding: 15px 20px;
+    }
+
+    @include xl-desktop-up {
+      padding: 18px 30px;
+    }
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.logo {
+  color: $oxford-blue-1;
+  font-family: $ff-poppins;
+  font-size: 3.4rem;
+  font-weight: $fw-800;
+}
+
+.nav-toggle-btn {
+  color: $black;
+  font-size: 30px;
+  border: 1px solid $black;
+  padding: 5px;
+  background-color: $white;
+  display: grid;
+  place-items: center;
+  border-radius: $radius-4;
+
+  @include laptop-up {
+    display: none;
+  }
+
+  &.active .menu-icon,
+  .close-icon {
+    display: none;
+  }
+
+  .menu-icon,
+  &.active .close-icon {
+    display: block;
+  }
+}
+
+.navbar {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 25px;
+  right: 25px;
+  background-color: $white;
+  padding-inline: 0;
+  box-shadow: $shadow-1;
+  max-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: 0.25s $cubic-out;
+
+  @include laptop-up {
+    all: unset;
+    margin-inline-start: auto;
+  }
+
+  &.active {
+    visibility: visible;
+    max-height: 244px;
+    transition-duration: 0.5s;
+
+    @include laptop-up {
+      all: unset;
+      margin-inline-start: auto;
+    }
+  }
+}
+
+.navbar-list {
+  > li:not(:last-child) {
+    border-block-end: 1px solid $gainsboro_50;
+
+    @include laptop-up {
+      border-block-end: none;
+    }
+  }
+
+  @include laptop-up {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  @include xl-desktop-up {
+    gap: 18px;
+  }
+}
+
+.navbar-link {
+  color: $jet;
+  text-transform: uppercase;
+  font-weight: $fw-600;
+  padding: 15px;
+  transition: color $transition;
+
+  @include laptop-up {
+    color: $oxford-blue-1;
+    font-family: $ff-poppins;
+    text-transform: capitalize;
+    transition: $transition;
+  }
+
+  &.active,
+  &:is(:hover, :focus-visible) {
+    color: $royal-blue-light;
+  }
+}

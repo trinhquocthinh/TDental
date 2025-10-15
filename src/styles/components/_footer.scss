@@ -1,0 +1,130 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.footer-top {
+  background-color: $oxford-blue-2;
+  color: $light-steel-blue;
+
+  .container {
+    display: grid;
+    gap: 30px;
+
+    @include mobile-up {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include laptop-up {
+      grid-template-columns: 1fr 0.6fr 0.6fr 0.8fr;
+    }
+  }
+}
+
+.footer-brand {
+  .logo {
+    color: $white;
+  }
+}
+
+.footer-text {
+  line-height: 1.6;
+  margin-block: 15px;
+}
+
+.schedule {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .span {
+    line-height: 1.6;
+  }
+}
+
+.schedule-icon,
+.footer-item .item-icon {
+  background-image: $gradient;
+  color: $white;
+  font-size: 18px;
+  padding: 11px;
+  border-radius: 50%;
+}
+
+.footer-list-title {
+  color: $white;
+  font-family: $ff-poppins;
+  font-size: $fs-4;
+  font-weight: $fw-700;
+  margin-block-end: 10px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-block: 10px;
+  transition: $transition;
+
+  svg {
+    color: $royal-blue-light;
+    font-size: 1.8rem;
+  }
+
+  &:is(:hover, :focus-visible) {
+    color: $white;
+  }
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .item-text {
+    line-height: 1.6;
+  }
+
+  &:not(:first-child) {
+    margin-block-start: 20px;
+  }
+}
+
+.footer-bottom {
+  background-color: $oxford-blue-3;
+  padding-block: 50px;
+  text-align: center;
+
+  @include tablet-up {
+    padding-block: 30px;
+  }
+
+  .container {
+    display: grid;
+    gap: 20px;
+
+    @include tablet-up {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.footer .social-list {
+  @include flex-center;
+  gap: 15px;
+}
+
+.footer .social-link {
+  padding: 11px;
+  background-color: hsla(0, 0%, 100%, 0.2);
+  color: $white;
+  font-size: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: $transition;
+
+  &:is(:hover, :focus-visible) {
+    background-image: $gradient;
+  }
+}

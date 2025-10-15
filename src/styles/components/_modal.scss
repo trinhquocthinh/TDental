@@ -1,0 +1,226 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.modal-container {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: clamp(24px, 6vw, 64px);
+  overflow-y: auto;
+  isolation: isolate;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.35s $cubic-out,
+    visibility 0.35s $cubic-out;
+  z-index: 11;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+
+    .modal-overlay {
+      opacity: 1;
+    }
+
+    .modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    135deg,
+    hsla(218, 70%, 18%, 0.7),
+    hsla(225, 68%, 53%, 0.45)
+  );
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.35s $cubic-out;
+}
+
+.modal {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: min(90vh, 760px);
+  overflow-y: auto;
+  background-color: $white;
+  border-radius: 24px;
+  padding: clamp(28px, 4.5vw, 52px);
+  box-shadow: 0 40px 80px hsla(218, 71%, 11%, 0.22);
+  transform: translateY(30px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform 0.4s $cubic-out,
+    opacity 0.4s $cubic-out;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $light-steel-blue;
+    border-radius: 20px;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: $lavender-web;
+  color: $royal-blue-light;
+  box-shadow: $shadow-4;
+  transition:
+    transform 0.25s $cubic-out,
+    background-color 0.25s $cubic-out;
+
+  &:is(:hover, :focus-visible) {
+    background-color: $royal-blue-light;
+    color: $white;
+    transform: translateY(-2px);
+  }
+}
+
+.modal-subtitle {
+  margin-block-end: 12px;
+}
+
+.modal-title {
+  margin-block-end: 16px;
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+}
+
+.modal-text {
+  margin-block-end: 32px;
+  line-height: 1.6;
+}
+
+.modal-form {
+  display: grid;
+  gap: 24px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.form-field--full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-weight: $fw-600;
+  color: $oxford-blue-1;
+  margin-block-end: 8px;
+}
+
+.input-field {
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 18px;
+  background-color: $cultured;
+  border: 1px solid $gainsboro_50;
+  border-radius: 14px;
+  font-size: $fs-7;
+  color: $oxford-blue-2;
+  transition:
+    border-color 0.2s $cubic-out,
+    box-shadow 0.2s $cubic-out,
+    background-color 0.2s $cubic-out;
+
+  &::placeholder {
+    color: $sonic-silver;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: $royal-blue-light;
+    background-color: $white;
+    box-shadow: 0 0 0 4px hsla(225, 68%, 53%, 0.15);
+  }
+}
+
+select.input-field {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, $royal-blue-light 60%),
+    linear-gradient(135deg, $royal-blue-light 40%, transparent 50%);
+  background-position:
+    calc(100% - 22px) calc(50% - 6px),
+    calc(100% - 16px) calc(50% - 6px);
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+textarea.input-field {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1.4rem;
+  color: $sonic-silver;
+
+  input {
+    width: 18px;
+    height: 18px;
+    margin-block-start: 3px;
+    accent-color: $royal-blue-light;
+  }
+}
+
+.modal-submit {
+  width: 100%;
+  margin-block: 10px 8px;
+  font-size: 1.6rem;
+
+  &[disabled] {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+.form-feedback {
+  display: none;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: $fw-600;
+  color: $royal-blue-light;
+
+  &[data-visible='true'] {
+    display: block;
+  }
+}
+
+.form-disclaimer {
+  text-align: center;
+  font-size: 1.3rem;
+  color: $sonic-silver;
+  line-height: 1.6;
+
+  a {
+    color: $royal-blue-light;
+    font-weight: $fw-600;
+
+    &:is(:hover, :focus-visible) {
+      text-decoration: underline;
+    }
+  }
+}

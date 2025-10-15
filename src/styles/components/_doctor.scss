@@ -1,0 +1,118 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.doctor {
+  @include xl-desktop-up {
+    padding-block-end: 180px;
+  }
+
+  .section-title {
+    margin-block-end: 50px;
+  }
+}
+
+.doctor-card {
+  padding: 30px;
+  border: 1px solid $light-gray;
+  border-radius: $radius-4;
+  text-align: center;
+  min-height: 100%;
+  background-color: $white;
+  transition:
+    box-shadow $transition,
+    transform $transition;
+
+  &:is(:hover, :focus-within) {
+    transform: translateY(-6px);
+    box-shadow: $shadow-5;
+  }
+
+  .card-banner {
+    border-radius: $radius-4;
+    overflow: hidden;
+    margin-block-end: 25px;
+  }
+
+  .card-title {
+    font-size: $fs-4;
+    transition: $transition;
+
+    &:is(:hover, :focus-visible) {
+      color: $royal-blue-light;
+    }
+  }
+
+  .card-subtitle {
+    color: $royal-blue-light;
+    margin-block: 10px 15px;
+  }
+
+  .card-social-list {
+    @include flex-center;
+    gap: 10px;
+  }
+
+  .card-social-link {
+    background-color: $lavender-web;
+    color: $royal-blue-light;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 50%;
+    transition: $transition;
+
+    &:is(:hover, :focus-visible) {
+      background-color: $royal-blue-light;
+      color: $white;
+    }
+  }
+}
+
+.has-scrollbar {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  margin-inline: 15px;
+  padding-block-end: 40px;
+  margin-block-end: -20px;
+  scroll-snap-type: inline mandatory;
+
+  @include xl-desktop-up {
+    padding-block-end: 0;
+    margin-block-end: 0;
+  }
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $light-gray;
+    border-radius: $radius-4;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $royal-blue-light;
+    border-radius: $radius-4;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: calc(25% - 30px);
+  }
+}
+
+.scrollbar-item {
+  min-width: 100%;
+  scroll-snap-align: start;
+
+  @include tablet-up {
+    min-width: calc(50% - 15px);
+  }
+
+  @include laptop-up {
+    min-width: calc(33.33% - 20px);
+  }
+
+  @include xl-desktop-up {
+    min-width: calc(25% - 22.5px);
+  }
+}

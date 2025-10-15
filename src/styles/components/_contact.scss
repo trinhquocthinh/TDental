@@ -1,0 +1,133 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+// Contact page specific styles
+
+.contact {
+  .container {
+    display: grid;
+    gap: 30px;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  gap: 30px;
+}
+
+.contact-card {
+  background-color: $white;
+  padding: 30px;
+  border-radius: $radius-4;
+  box-shadow: $shadow-5;
+
+  .section-title {
+    margin-block-end: 20px;
+  }
+
+  .card-text {
+    margin-block-end: 20px;
+    line-height: 1.6;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-block: 20px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  a,
+  span {
+    color: $sonic-silver;
+    transition: $transition;
+  }
+
+  a:is(:hover, :focus-visible) {
+    color: $royal-blue-light;
+  }
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+
+  .btn {
+    justify-self: start;
+  }
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+}
+
+.map-embed {
+  margin-block-start: 30px;
+  border-radius: $radius-4;
+  overflow: hidden;
+  height: 300px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+// FAQ section
+.faq {
+  background-color: $cultured;
+
+  .section-title {
+    margin-block-end: 40px;
+  }
+}
+
+.faq-list {
+  @include grid-list;
+}
+
+.faq-item {
+  background-color: $white;
+  padding: 30px;
+  border-radius: $radius-4;
+  box-shadow: $shadow-1;
+
+  .h3 {
+    color: $oxford-blue-1;
+    margin-block-end: 15px;
+  }
+
+  .faq-text {
+    color: $sonic-silver;
+    line-height: 1.7;
+  }
+}
+
+@include tablet-up {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .faq-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include laptop-up {
+  .contact-grid {
+    gap: 60px;
+  }
+
+  .faq-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
