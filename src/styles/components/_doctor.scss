@@ -18,7 +18,9 @@
   text-align: center;
   min-height: 100%;
   background-color: $white;
-  transition: box-shadow $transition, transform $transition;
+  transition:
+    box-shadow $transition,
+    transform $transition;
 
   &:is(:hover, :focus-within) {
     transform: translateY(-6px);

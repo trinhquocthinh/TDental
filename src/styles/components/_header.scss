@@ -65,7 +65,9 @@
   width: 100%;
   padding-block: 15px;
   z-index: 4;
-  transition: background-color $transition, box-shadow $transition;
+  transition:
+    background-color $transition,
+    box-shadow $transition;
 
   @include laptop-up {
     top: 58px;

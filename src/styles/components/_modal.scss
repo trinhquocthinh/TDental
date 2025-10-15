@@ -13,7 +13,9 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s $cubic-out, visibility 0.35s $cubic-out;
+  transition:
+    opacity 0.35s $cubic-out,
+    visibility 0.35s $cubic-out;
   z-index: 11;
 
   &.active {
@@ -56,7 +58,9 @@
   box-shadow: 0 40px 80px hsla(218, 71%, 11%, 0.22);
   transform: translateY(30px) scale(0.96);
   opacity: 0;
-  transition: transform 0.4s $cubic-out, opacity 0.4s $cubic-out;
+  transition:
+    transform 0.4s $cubic-out,
+    opacity 0.4s $cubic-out;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -79,7 +83,9 @@
   background-color: $lavender-web;
   color: $royal-blue-light;
   box-shadow: $shadow-4;
-  transition: transform 0.25s $cubic-out, background-color 0.25s $cubic-out;
+  transition:
+    transform 0.25s $cubic-out,
+    background-color 0.25s $cubic-out;
 
   &:is(:hover, :focus-visible) {
     background-color: $royal-blue-light;
@@ -131,7 +137,9 @@
   border-radius: 14px;
   font-size: $fs-7;
   color: $oxford-blue-2;
-  transition: border-color 0.2s $cubic-out, box-shadow 0.2s $cubic-out,
+  transition:
+    border-color 0.2s $cubic-out,
+    box-shadow 0.2s $cubic-out,
     background-color 0.2s $cubic-out;
 
   &::placeholder {
@@ -148,13 +156,11 @@
 
 select.input-field {
   appearance: none;
-  background-image: linear-gradient(
-      45deg,
-      transparent 50%,
-      $royal-blue-light 60%
-    ),
+  background-image:
+    linear-gradient(45deg, transparent 50%, $royal-blue-light 60%),
     linear-gradient(135deg, $royal-blue-light 40%, transparent 50%);
-  background-position: calc(100% - 22px) calc(50% - 6px),
+  background-position:
+    calc(100% - 22px) calc(50% - 6px),
     calc(100% - 16px) calc(50% - 6px);
   background-size: 6px 6px;
   background-repeat: no-repeat;

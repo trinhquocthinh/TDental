@@ -14,11 +14,7 @@ $white: hsl(0, 0%, 100%);
 $black: hsl(0, 0%, 0%);
 $jet: hsl(0, 0%, 20%);
 
-$gradient: linear-gradient(
-  90deg,
-  $carolina-blue 0%,
-  $royal-blue-light 100%
-);
+$gradient: linear-gradient(90deg, $carolina-blue 0%, $royal-blue-light 100%);
 
 $ff-roboto: 'Roboto', sans-serif;
 $ff-poppins: 'Poppins', sans-serif;
