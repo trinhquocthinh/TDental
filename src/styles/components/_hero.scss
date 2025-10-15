@@ -54,12 +54,40 @@
     align-items: center;
   }
 
+  .newsletter-input-wrapper {
+    flex: 1;
+    position: relative;
+  }
+
   .email-field {
     background-color: $cultured;
     color: $black;
     min-height: 70px;
     padding-inline: 15px;
     border-radius: $radius-4;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: $royal-blue-light;
+      background-color: $white;
+    }
+
+    &.input-error {
+      border-color: #e74c3c;
+      background-color: #fff5f5;
+
+      &:focus {
+        border-color: #e74c3c;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
 
     @include tablet-up {
       margin-block-end: 0;
@@ -68,12 +96,67 @@
   }
 
   .btn {
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     @include tablet-up {
       width: auto;
       position: absolute;
       top: 15px;
       right: 15px;
       bottom: 15px;
+    }
+  }
+
+  .newsletter-error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 8px;
+    animation: slideDown 0.3s ease;
+
+    ion-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .newsletter-success {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 2px solid #28a745;
+    border-radius: $radius-4;
+    color: #155724;
+    font-size: 0.875rem;
+    font-weight: 500;
+    animation: slideDown 0.4s ease, pulse 0.6s ease;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+
+    @include tablet-up {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 10px;
+    }
+
+    ion-icon {
+      font-size: 1.25rem;
+      color: #28a745;
+      flex-shrink: 0;
     }
   }
 }

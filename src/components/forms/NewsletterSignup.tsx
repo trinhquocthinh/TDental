@@ -1,85 +1,117 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
-type SubmissionState = 'idle' | 'success' | 'error';
+type SubmissionState = 'idle' | 'success' | 'submitting';
 
 type NewsletterSignupProps = {
   className?: string;
 };
 
+type NewsletterFormData = {
+  newsletter_email: string;
+};
+
 const successCopy = 'Thanks! Look out for your first newsletter soon.';
-const errorCopy = 'Please enter a valid email address to subscribe.';
+
+const newsletterSchema = yup.object().shape({
+  newsletter_email: yup
+    .string()
+    .required('Email address is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must not exceed 255 characters'),
+});
 
 export function NewsletterSignup({ className }: NewsletterSignupProps) {
   const [state, setState] = useState<SubmissionState>('idle');
 
-  const feedback = useMemo(() => {
-    if (state === 'success') {
-      return successCopy;
-    }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<NewsletterFormData>({
+    resolver: yupResolver(newsletterSchema),
+    mode: 'onSubmit',
+  });
 
-    if (state === 'error') {
-      return errorCopy;
-    }
+  const onSubmit = async (data: NewsletterFormData) => {
+    setState('submitting');
 
-    return '';
-  }, [state]);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    // eslint-disable-next-line no-console
+    console.log('Newsletter subscription:', data);
+
+    setState('success');
+    reset();
+
+    // Reset success message after 5 seconds
+    setTimeout(() => {
+      setState('idle');
+    }, 5000);
+  };
 
   const formClassName = className ? `${className} hero-form` : 'hero-form';
+  const hasError = Boolean(errors.newsletter_email);
 
   return (
     <form
       className={formClassName}
       aria-label="Newsletter sign-up"
       noValidate
-      onSubmit={event => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        const formData = new FormData(form);
-        const email = (formData.get('newsletter_email') ?? '')
-          .toString()
-          .trim();
-
-        const isValidEmail = email.length > 3 && email.includes('@');
-
-        if (!isValidEmail) {
-          setState('error');
-          return;
-        }
-
-        setState('success');
-        form.reset();
-      }}
+      onSubmit={handleSubmit(onSubmit)}
     >
-      <label htmlFor="newsletter-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="newsletter-email"
-        type="email"
-        name="newsletter_email"
-        placeholder="Your Email Address..."
-        required
-        className="email-field"
-        aria-describedby="newsletter-feedback"
-        onInput={() => {
-          if (state !== 'idle') {
-            setState('idle');
+      <div className="newsletter-input-wrapper">
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="newsletter-email"
+          type="email"
+          placeholder="Your Email Address..."
+          className={`email-field ${hasError ? 'input-error' : ''}`}
+          aria-describedby={
+            hasError ? 'newsletter-error' : 'newsletter-feedback'
           }
-        }}
-      />
-      <button type="submit" className="btn">
-        Subscribe
+          aria-invalid={hasError}
+          disabled={state === 'submitting'}
+          {...register('newsletter_email')}
+        />
+        {hasError && (
+          <div className="newsletter-error" id="newsletter-error" role="alert">
+            <ion-icon name="alert-circle-outline" aria-hidden="true" />
+            <span>{errors.newsletter_email?.message}</span>
+          </div>
+        )}
+      </div>
+
+      <button type="submit" className="btn" disabled={state === 'submitting'}>
+        {state === 'submitting' ? (
+          <>
+            <span className="btn-spinner" aria-hidden="true" />
+            Subscribing...
+          </>
+        ) : (
+          'Subscribe'
+        )}
       </button>
-      <p
-        id="newsletter-feedback"
-        role="status"
-        aria-live="polite"
-        className="form-feedback"
-      >
-        {feedback}
-      </p>
+
+      {state === 'success' && (
+        <div
+          id="newsletter-feedback"
+          role="status"
+          aria-live="polite"
+          className="newsletter-success"
+        >
+          <ion-icon name="checkmark-circle-outline" aria-hidden="true" />
+          <span>{successCopy}</span>
+        </div>
+      )}
     </form>
   );
 }

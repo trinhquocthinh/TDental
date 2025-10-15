@@ -126,6 +126,9 @@
   font-weight: $fw-600;
   color: $oxford-blue-1;
   margin-block-end: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .input-field {
@@ -223,4 +226,9 @@ textarea.input-field {
       text-decoration: underline;
     }
   }
+}
+
+.contact-require {
+  color: #f00;
+  font-size: 1.2rem;
 }

@@ -91,6 +91,7 @@ const nextConfig = {
               "img-src 'self' data: https: blob:",
               "font-src 'self' data: https://fonts.gstatic.com",
               "connect-src 'self' https:",
+              "frame-src 'self' https://www.google.com",
               "frame-ancestors 'self'",
               "base-uri 'self'",
               "form-action 'self'",

@@ -1,27 +1,70 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-
-import { appointmentDoctors, appointmentServices } from '@/data/contact';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 const successMessage =
   'Thanks for reaching out! Our care coordinator will contact you within one business hour.';
-const errorMessage =
-  'Please fill in the required fields so we can respond to your message.';
 
-type SubmissionState = 'idle' | 'success' | 'error';
+type SubmissionState = 'idle' | 'success' | 'submitting';
 
 type ContactFormField = {
   id: string;
   label: string;
   type: 'text' | 'email' | 'tel' | 'select' | 'textarea';
-  name: string;
+  name: keyof ContactFormData;
   required?: boolean;
   options?: ReadonlyArray<{ value: string; label: string }>;
   autoComplete?: string;
   inputMode?: 'text' | 'tel' | 'email';
   rows?: number;
+  placeholder?: string;
 };
+
+type ContactFormData = {
+  contact_name: string;
+  contact_email: string;
+  contact_phone: string;
+  contact_subject: string;
+  contact_message: string;
+};
+
+// Validation schema with Yup
+const contactSchema = yup.object().shape({
+  contact_name: yup
+    .string()
+    .required('Please enter your full name')
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must not exceed 100 characters')
+    .matches(
+      /^[a-zA-Z\s'-]+$/,
+      'Name can only contain letters, spaces, hyphens, and apostrophes'
+    ),
+  contact_email: yup
+    .string()
+    .required('Please enter your email address')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must not exceed 255 characters'),
+  contact_phone: yup
+    .string()
+    .required('Please enter your phone number')
+    .matches(
+      /^[+]?[(]?\d{1,4}[)]?[-\s.]?[(]?\d{1,4}[)]?[-\s.]?\d{1,9}$/,
+      'Please enter a valid phone number'
+    ),
+  contact_subject: yup
+    .string()
+    .required('Please enter a subject')
+    .min(3, 'Subject must be at least 3 characters')
+    .max(200, 'Subject must not exceed 200 characters'),
+  contact_message: yup
+    .string()
+    .required('Please tell us how we can help you')
+    .min(10, 'Message must be at least 10 characters')
+    .max(1000, 'Message must not exceed 1000 characters'),
+});
 
 const messageFields: ContactFormField[] = [
   {
@@ -31,6 +74,7 @@ const messageFields: ContactFormField[] = [
     type: 'text',
     required: true,
     autoComplete: 'name',
+    placeholder: 'John Doe',
   },
   {
     id: 'contact-email',
@@ -39,6 +83,7 @@ const messageFields: ContactFormField[] = [
     type: 'email',
     required: true,
     autoComplete: 'email',
+    placeholder: 'john.doe@example.com',
   },
   {
     id: 'contact-phone',
@@ -47,6 +92,8 @@ const messageFields: ContactFormField[] = [
     type: 'tel',
     inputMode: 'tel',
     autoComplete: 'tel',
+    required: true,
+    placeholder: '+91-7052-101-786',
   },
   {
     id: 'contact-subject',
@@ -54,29 +101,7 @@ const messageFields: ContactFormField[] = [
     name: 'contact_subject',
     type: 'text',
     required: true,
-  },
-  {
-    id: 'contact-service',
-    label: 'Service of Interest',
-    name: 'contact_service',
-    type: 'select',
-    options: appointmentServices.map(service => ({
-      value: service,
-      label: service,
-    })),
-  },
-  {
-    id: 'contact-doctor',
-    label: 'Preferred Dentist',
-    name: 'contact_doctor',
-    type: 'select',
-    options: appointmentDoctors.map(doctorId => ({
-      value: doctorId,
-      label: doctorId
-        .split('-')
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(' '),
-    })),
+    placeholder: 'Appointment inquiry',
   },
   {
     id: 'contact-message',
@@ -85,69 +110,57 @@ const messageFields: ContactFormField[] = [
     type: 'textarea',
     required: true,
     rows: 4,
+    placeholder: 'Please describe your concern or inquiry...',
   },
 ];
-
-function isValid(formData: FormData): boolean {
-  const requiredFields = [
-    'contact_name',
-    'contact_email',
-    'contact_subject',
-    'contact_message',
-  ];
-
-  for (const field of requiredFields) {
-    const value = (formData.get(field) ?? '').toString().trim();
-    if (!value) {
-      return false;
-    }
-  }
-
-  const email = (formData.get('contact_email') ?? '').toString().trim();
-
-  return email.includes('@');
-}
 
 export function ContactForm() {
   const [state, setState] = useState<SubmissionState>('idle');
 
-  const feedback = useMemo(() => {
-    if (state === 'success') {
-      return successMessage;
-    }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: yupResolver(contactSchema),
+    mode: 'onBlur',
+  });
 
-    if (state === 'error') {
-      return errorMessage;
-    }
+  const onSubmit = async (data: ContactFormData) => {
+    setState('submitting');
 
-    return '';
-  }, [state]);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Here you would typically send the data to your API
+    // eslint-disable-next-line no-console
+    console.log('Form submitted:', data);
+
+    setState('success');
+    reset();
+
+    // Reset success message after 5 seconds
+    setTimeout(() => {
+      setState('idle');
+    }, 5000);
+  };
 
   return (
-    <form
-      className="contact-form"
-      noValidate
-      onSubmit={event => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-
-        if (!isValid(formData)) {
-          setState('error');
-          return;
-        }
-
-        setState('success');
-        event.currentTarget.reset();
-      }}
-    >
+    <form className="contact-form" noValidate onSubmit={handleSubmit(onSubmit)}>
       {messageFields.map(field => {
         const inputId = field.id;
         const isRequired = field.required ?? false;
+        const fieldError = errors[field.name];
+        const hasError = Boolean(fieldError);
 
         const baseProps = {
-          className: 'input-field',
+          className: `input-field ${hasError ? 'input-error' : ''}`,
           id: inputId,
-          name: field.name,
+          placeholder: field.placeholder,
+          disabled: isSubmitting,
+          'aria-invalid': hasError,
+          'aria-describedby': hasError ? `${inputId}-error` : undefined,
         } as const;
 
         let inputElement: JSX.Element;
@@ -156,25 +169,13 @@ export function ContactForm() {
           inputElement = (
             <textarea
               {...baseProps}
-              required={isRequired}
+              {...register(field.name)}
               rows={field.rows ?? 4}
-              onInput={() => {
-                if (state !== 'idle') {
-                  setState('idle');
-                }
-              }}
             />
           );
         } else if (field.type === 'select') {
           inputElement = (
-            <select
-              {...baseProps}
-              onChange={() => {
-                if (state !== 'idle') {
-                  setState('idle');
-                }
-              }}
-            >
+            <select {...baseProps} {...register(field.name)}>
               <option value="">No preference</option>
               {field.options?.map(option => (
                 <option
@@ -191,14 +192,9 @@ export function ContactForm() {
             <input
               {...baseProps}
               type={field.type}
-              required={isRequired}
               autoComplete={field.autoComplete}
               inputMode={field.inputMode}
-              onInput={() => {
-                if (state !== 'idle') {
-                  setState('idle');
-                }
-              }}
+              {...register(field.name)}
             />
           );
         }
@@ -207,19 +203,40 @@ export function ContactForm() {
           <div className="form-row" key={field.id}>
             <label className="form-label" htmlFor={inputId}>
               {field.label}
-              {isRequired ? <span aria-hidden="true">*</span> : null}
+              {isRequired ? (
+                <span className="contact-require" aria-hidden="true">
+                  *
+                </span>
+              ) : null}
             </label>
             {inputElement}
+            {hasError && (
+              <div className="field-error" id={`${inputId}-error`} role="alert">
+                <ion-icon name="alert-circle-outline" aria-hidden="true" />
+                <span>{fieldError?.message}</span>
+              </div>
+            )}
           </div>
         );
       })}
 
-      <button type="submit" className="btn">
-        Send message
+      <button type="submit" className="btn" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <>
+            <span className="btn-spinner" aria-hidden="true" />
+            Sending...
+          </>
+        ) : (
+          'Send message'
+        )}
       </button>
-      <p className="form-feedback" role="status" aria-live="polite">
-        {feedback}
-      </p>
+
+      {state === 'success' && (
+        <div className="form-success" role="status" aria-live="polite">
+          <ion-icon name="checkmark-circle-outline" aria-hidden="true" />
+          <span>{successMessage}</span>
+        </div>
+      )}
     </form>
   );
 }
