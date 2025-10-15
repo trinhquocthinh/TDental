@@ -167,8 +167,8 @@
   transition: 0.25s $cubic-out;
 
   @include laptop-up {
-    all: unset;
-    margin-inline-start: auto;
+    all: unset !important;
+    margin-inline-start: auto !important;
   }
 
   &.active {
@@ -177,8 +177,8 @@
     transition-duration: 0.5s;
 
     @include laptop-up {
-      all: unset;
-      margin-inline-start: auto;
+      all: unset !important;
+      margin-inline-start: auto !important;
     }
   }
 }
@@ -221,4 +221,8 @@
   &:is(:hover, :focus-visible) {
     color: $royal-blue-light;
   }
+}
+
+.hero-title {
+  margin-block: 15px 30px;
 }

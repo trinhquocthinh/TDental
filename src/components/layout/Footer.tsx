@@ -13,11 +13,11 @@ import {
 
 const quickLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Services', href: '/services' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Services', href: '/#service' },
   { label: 'Patient Stories', href: '/services#case-studies' },
-  { label: 'Our Team', href: '/about#team' },
-  { label: 'Latest Blog', href: '/blog' },
+  { label: 'Our Team', href: '/#team' },
+  { label: 'Latest Blog', href: '/#blog' },
 ] as const;
 
 const servicesLinks = [
@@ -140,7 +140,8 @@ export function Footer(): ReactElement {
       <div className="footer-bottom">
         <div className="container">
           <p className="copyright">
-            &copy; {new Date().getFullYear()} TDental. All rights reserved.
+            &copy; {new Date().getFullYear()} TDental. All Rights Reserved by
+            koolmaster.
           </p>
 
           <ul className="social-list">

@@ -19,9 +19,9 @@ import { useAppointmentModal } from '@/contexts/AppointmentModalContext';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Services', href: '#service' },
+  { label: 'About Us', href: '#about' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 
@@ -85,13 +85,13 @@ export function Header(): ReactElement {
         <div className="container">
           <ul className="contact-list">
             <li className="contact-item">
-              <IoMailOutline aria-hidden="true" />
+              <IoMailOutline aria-hidden="true" color="hsl(225, 68%, 53%)" />
               <a href="mailto:info@TDental.com" className="contact-link">
                 info@TDental.com
               </a>
             </li>
             <li className="contact-item">
-              <IoCallOutline aria-hidden="true" />
+              <IoCallOutline aria-hidden="true" color="hsl(225, 68%, 53%)" />
               <a href="tel:+917052101786" className="contact-link">
                 +91-7052-101-786
               </a>

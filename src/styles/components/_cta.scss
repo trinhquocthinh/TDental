@@ -29,6 +29,10 @@
     color: $white;
     font-size: $fs-3;
     margin-block-end: 30px;
+
+    @include desktop-up {
+      font-size: 4.8rem;
+    }
   }
 
   .btn {

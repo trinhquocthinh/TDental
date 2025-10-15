@@ -16,8 +16,9 @@ $jet: hsl(0, 0%, 20%);
 
 $gradient: linear-gradient(90deg, $carolina-blue 0%, $royal-blue-light 100%);
 
-$ff-roboto: 'Roboto', sans-serif;
-$ff-poppins: 'Poppins', sans-serif;
+// Font families - fallback values, use var(--font-*) in CSS for Next.js fonts
+$ff-roboto: var(--font-roboto, 'Roboto', sans-serif);
+$ff-poppins: var(--font-poppins, 'Poppins', sans-serif);
 
 $fs-1: 4rem;
 $fs-2: 3.6rem;
@@ -46,55 +47,3 @@ $radius-4: 4px;
 $transition: 0.25s ease;
 $cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
 
-// Export as CSS custom properties for runtime usage
-:root {
-  --light-steel-blue: #{$light-steel-blue};
-  --royal-blue-light: #{$royal-blue-light};
-  --flickr-blue_30: #{$flickr-blue_30};
-  --carolina-blue: #{$carolina-blue};
-  --oxford-blue-1: #{$oxford-blue-1};
-  --oxford-blue-2: #{$oxford-blue-2};
-  --oxford-blue-3: #{$oxford-blue-3};
-  --gainsboro_50: #{$gainsboro_50};
-  --lavender-web: #{$lavender-web};
-  --sonic-silver: #{$sonic-silver};
-  --light-gray: #{$light-gray};
-  --cultured: #{$cultured};
-  --white: #{$white};
-  --black: #{$black};
-  --jet: #{$jet};
-
-  --gradient: #{$gradient};
-
-  --ff-roboto: #{$ff-roboto};
-  --ff-poppins: #{$ff-poppins};
-
-  --fs-1: #{$fs-1};
-  --fs-2: #{$fs-2};
-  --fs-3: #{$fs-3};
-  --fs-4: #{$fs-4};
-  --fs-5: #{$fs-5};
-  --fs-6: #{$fs-6};
-  --fs-7: #{$fs-7};
-
-  --fw-800: #{$fw-800};
-  --fw-700: #{$fw-700};
-  --fw-600: #{$fw-600};
-  --fw-500: #{$fw-500};
-
-  --section-padding: #{$section-padding};
-
-  --shadow-1: #{$shadow-1};
-  --shadow-2: #{$shadow-2};
-  --shadow-3: #{$shadow-3};
-  --shadow-4: #{$shadow-4};
-  --shadow-5: #{$shadow-5};
-
-  --radius-6: #{$radius-6};
-  --radius-4: #{$radius-4};
-
-  --transition: #{$transition};
-  --cubic-out: #{$cubic-out};
-
-  --deg: 90deg;
-}

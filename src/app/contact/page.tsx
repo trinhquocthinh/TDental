@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import type { CSSProperties, ReactElement } from 'react';
 
 import { BookAppointmentButton } from '@/components/common/BookAppointmentButton';
@@ -10,13 +9,8 @@ import { ContactForm } from '@/components/forms/ContactForm';
 import { clinicAddress } from '@/data/contact';
 
 const heroBackground: CSSProperties = {
-  backgroundImage: "url('/assets/images/hero-banner.png')",
+  backgroundImage: "url('/assets/images/hero-bg.png')",
 };
-
-const heroSubtitle = "Let's connect";
-const heroTitle = "We're here for every smile question";
-const heroDescription =
-  'Call, message, or request a visit. Our care coordinators respond within one business hour during operating times.';
 
 const contactFormIntro =
   'Use the form below to ask a question, request records, or follow up on a recent visit.';
@@ -35,23 +29,10 @@ export default function ContactPage(): ReactElement {
     <main>
       <article>
         <section
-          className="section hero"
+          className="section contact"
+          aria-label="Contact details"
           style={heroBackground}
-          aria-label="Contact hero"
         >
-          <div className="container">
-            <div className="hero-content">
-              <p className="section-subtitle">{heroSubtitle}</p>
-              <h1 className="h1 hero-title">{heroTitle}</h1>
-              <p className="hero-text">{heroDescription}</p>
-              <Link href="#appointment" className="btn">
-                Request appointment
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="section contact" aria-label="Contact details">
           <div className="container">
             <div className="contact-grid">
               <div className="contact-card">
@@ -68,7 +49,7 @@ export default function ContactPage(): ReactElement {
                 <div className="map-embed" aria-label="Clinic location map">
                   <iframe
                     title="TDental clinic location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.4634733669594!2d80.35278071508768!3d26.89257398314217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399959d0fd78373f%3A0xa7fac1397d5d4f6d!2sLDA%20Colony%2C%20Kanpur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1672833835714!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15555.468031403281!2d77.5715132871582!3d12.91626810000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae150954465937%3A0x84cc684257a3d44d!2sSamarthanam%20Trust%20For%20The%20Disabled!5e0!3m2!1svi!2s!4v1760511456296!5m2!1svi!2s"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />

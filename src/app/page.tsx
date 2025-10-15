@@ -35,9 +35,7 @@ export default function HomePage(): ReactElement {
           <div className="container">
             <div className="hero-content">
               <p className="section-subtitle">Welcome To TDental</p>
-              <h1 className="h1 hero-title">
-                Modern dentistry crafted around you
-              </h1>
+              <h1 className="h1 hero-title">We Are Best Dental Service</h1>
               <p className="hero-text">
                 Experience empathetic care, advanced technology, and relaxing
                 suites that make every visit feel easy. From preventive checkups
