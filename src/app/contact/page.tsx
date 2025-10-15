@@ -25,9 +25,9 @@ const consultationCtaDescription =
   "Share your previous records and we'll prepare a tailored treatment roadmap.";
 
 export const metadata: Metadata = {
-  title: 'Contact Dentelo - Schedule a Visit or Ask a Question',
+  title: 'Contact TDental - Schedule a Visit or Ask a Question',
   description:
-    'Reach the Dentelo care team by phone, email, or message. Request appointments, ask clinical questions, or get insurance support.',
+    'Reach the TDental care team by phone, email, or message. Request appointments, ask clinical questions, or get insurance support.',
 };
 
 export default function ContactPage(): ReactElement {
@@ -67,7 +67,7 @@ export default function ContactPage(): ReactElement {
                 <ContactChannels className="contact-info" />
                 <div className="map-embed" aria-label="Clinic location map">
                   <iframe
-                    title="Dentelo clinic location"
+                    title="TDental clinic location"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.4634733669594!2d80.35278071508768!3d26.89257398314217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399959d0fd78373f%3A0xa7fac1397d5d4f6d!2sLDA%20Colony%2C%20Kanpur%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1672833835714!5m2!1sen!2sin"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

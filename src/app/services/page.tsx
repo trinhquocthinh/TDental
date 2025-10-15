@@ -67,7 +67,7 @@ const faqs = [
   {
     question: 'Do you accept my insurance?',
     answer:
-      'Dentelo partners with major PPO plans and offers flexible in-house membership plans. Our concierge team verifies benefits before your visit and provides transparent copay estimates.',
+      'TDental partners with major PPO plans and offers flexible in-house membership plans. Our concierge team verifies benefits before your visit and provides transparent copay estimates.',
   },
   {
     question: 'How soon can I get an appointment?',
@@ -82,9 +82,9 @@ const faqs = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: 'Dentelo Services - Comprehensive Dental Care',
+  title: 'TDental Services - Comprehensive Dental Care',
   description:
-    'Explore Dentelo9s preventive, restorative, and cosmetic dental treatments tailored to every smile.',
+    'Explore TDental9s preventive, restorative, and cosmetic dental treatments tailored to every smile.',
 };
 
 export default function ServicesPage(): ReactElement {

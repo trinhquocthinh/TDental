@@ -89,9 +89,9 @@ export const doctors: Doctor[] = [
     image: '/assets/images/doctor-1.png',
     profileHref: '/about#team-howard',
     socials: [
-      { network: 'facebook', href: 'https://www.facebook.com/dentelo' },
-      { network: 'twitter', href: 'https://twitter.com/dentelo' },
-      { network: 'instagram', href: 'https://www.instagram.com/dentelo' },
+      { network: 'facebook', href: 'https://www.facebook.com/TDental' },
+      { network: 'twitter', href: 'https://twitter.com/TDental' },
+      { network: 'instagram', href: 'https://www.instagram.com/TDental' },
     ],
   },
   {
@@ -101,9 +101,9 @@ export const doctors: Doctor[] = [
     image: '/assets/images/doctor-2.png',
     profileHref: '/about#team-ella',
     socials: [
-      { network: 'facebook', href: 'https://www.facebook.com/dentelo' },
-      { network: 'twitter', href: 'https://twitter.com/dentelo' },
-      { network: 'instagram', href: 'https://www.instagram.com/dentelo' },
+      { network: 'facebook', href: 'https://www.facebook.com/TDental' },
+      { network: 'twitter', href: 'https://twitter.com/TDental' },
+      { network: 'instagram', href: 'https://www.instagram.com/TDental' },
     ],
   },
   {
@@ -113,9 +113,9 @@ export const doctors: Doctor[] = [
     image: '/assets/images/doctor-3.png',
     profileHref: '/about#team-vincent',
     socials: [
-      { network: 'facebook', href: 'https://www.facebook.com/dentelo' },
-      { network: 'twitter', href: 'https://twitter.com/dentelo' },
-      { network: 'instagram', href: 'https://www.instagram.com/dentelo' },
+      { network: 'facebook', href: 'https://www.facebook.com/TDental' },
+      { network: 'twitter', href: 'https://twitter.com/TDental' },
+      { network: 'instagram', href: 'https://www.instagram.com/TDental' },
     ],
   },
   {
@@ -125,9 +125,9 @@ export const doctors: Doctor[] = [
     image: '/assets/images/doctor-4.png',
     profileHref: '/about#team-danielle',
     socials: [
-      { network: 'facebook', href: 'https://www.facebook.com/dentelo' },
-      { network: 'twitter', href: 'https://twitter.com/dentelo' },
-      { network: 'instagram', href: 'https://www.instagram.com/dentelo' },
+      { network: 'facebook', href: 'https://www.facebook.com/TDental' },
+      { network: 'twitter', href: 'https://twitter.com/TDental' },
+      { network: 'instagram', href: 'https://www.instagram.com/TDental' },
     ],
   },
 ];

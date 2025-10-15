@@ -31,17 +31,17 @@ const servicesLinks = [
 
 const socialLinks = [
   {
-    href: 'https://www.facebook.com/dentelo',
+    href: 'https://www.facebook.com/TDental',
     label: 'Facebook',
     icon: <IoLogoFacebook />,
   },
   {
-    href: 'https://www.instagram.com/dentelo',
+    href: 'https://www.instagram.com/TDental',
     label: 'Instagram',
     icon: <IoLogoInstagram />,
   },
   {
-    href: 'https://twitter.com/dentelo',
+    href: 'https://twitter.com/TDental',
     label: 'Twitter',
     icon: <IoLogoTwitter />,
   },
@@ -54,7 +54,7 @@ export function Footer(): ReactElement {
         <div className="container">
           <div className="footer-brand">
             <Link href="/" className="logo">
-              Dentelo.
+              TDental.
             </Link>
 
             <p className="footer-text">
@@ -129,8 +129,8 @@ export function Footer(): ReactElement {
               <span className="item-icon">
                 <IoMailOutline aria-hidden="true" />
               </span>
-              <a href="mailto:help@dentelo.com" className="footer-link">
-                help@dentelo.com
+              <a href="mailto:help@TDental.com" className="footer-link">
+                help@TDental.com
               </a>
             </li>
           </ul>
@@ -140,7 +140,7 @@ export function Footer(): ReactElement {
       <div className="footer-bottom">
         <div className="container">
           <p className="copyright">
-            &copy; {new Date().getFullYear()} Dentelo. All rights reserved.
+            &copy; {new Date().getFullYear()} TDental. All rights reserved.
           </p>
 
           <ul className="social-list">

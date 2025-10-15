@@ -66,7 +66,7 @@ export const contactFaqs: Faq[] = [
   {
     question: 'Which insurance providers do you work with?',
     answer:
-      'Dentelo partners with 20+ Indian and international insurers. Share your policy while booking and we’ll confirm coverage before your visit.',
+      'TDental partners with 20+ Indian and international insurers. Share your policy while booking and we’ll confirm coverage before your visit.',
   },
   {
     question: 'How do I reschedule or cancel?',

@@ -27,22 +27,22 @@ const NAV_LINKS = [
 
 const SOCIAL_LINKS = [
   {
-    href: 'https://www.facebook.com/dentelo',
+    href: 'https://www.facebook.com/TDental',
     label: 'Facebook',
     icon: <IoLogoFacebook />,
   },
   {
-    href: 'https://www.instagram.com/dentelo',
+    href: 'https://www.instagram.com/TDental',
     label: 'Instagram',
     icon: <IoLogoInstagram />,
   },
   {
-    href: 'https://twitter.com/dentelo',
+    href: 'https://twitter.com/TDental',
     label: 'Twitter',
     icon: <IoLogoTwitter />,
   },
   {
-    href: 'https://www.youtube.com/@dentelo',
+    href: 'https://www.youtube.com/@TDental',
     label: 'YouTube',
     icon: <IoLogoYoutube />,
   },
@@ -86,8 +86,8 @@ export function Header(): ReactElement {
           <ul className="contact-list">
             <li className="contact-item">
               <IoMailOutline aria-hidden="true" />
-              <a href="mailto:info@dentelo.com" className="contact-link">
-                info@dentelo.com
+              <a href="mailto:info@TDental.com" className="contact-link">
+                info@TDental.com
               </a>
             </li>
             <li className="contact-item">
@@ -98,7 +98,7 @@ export function Header(): ReactElement {
             </li>
           </ul>
 
-          <ul className="social-list" aria-label="Follow Dentelo">
+          <ul className="social-list" aria-label="Follow TDental">
             {SOCIAL_LINKS.map(social => (
               <li key={social.href}>
                 <a
@@ -118,8 +118,8 @@ export function Header(): ReactElement {
 
       <div className={headerBottomClassName} data-header>
         <div className="container">
-          <Link href="/" className="logo" aria-label="Dentelo Home">
-            Dentelo.
+          <Link href="/" className="logo" aria-label="TDental Home">
+            TDental.
           </Link>
 
           <nav

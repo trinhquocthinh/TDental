@@ -34,7 +34,7 @@ export default function HomePage(): ReactElement {
         >
           <div className="container">
             <div className="hero-content">
-              <p className="section-subtitle">Welcome To Dentelo</p>
+              <p className="section-subtitle">Welcome To TDental</p>
               <h1 className="h1 hero-title">
                 Modern dentistry crafted around you
               </h1>
@@ -133,7 +133,7 @@ export default function HomePage(): ReactElement {
             </figure>
 
             <div className="about-content">
-              <p className="section-subtitle">Why patients choose Dentelo</p>
+              <p className="section-subtitle">Why patients choose TDental</p>
               <h2 className="h2 section-title">
                 Compassion meets clinical excellence
               </h2>

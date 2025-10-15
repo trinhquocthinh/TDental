@@ -399,7 +399,7 @@ export function AppointmentModal(): ReactElement | null {
           <label className="form-consent">
             <input type="checkbox" name="consent" required />
             <span>
-              I consent to Dentelo storing my information for appointment
+              I consent to TDental storing my information for appointment
               scheduling.
             </span>
           </label>

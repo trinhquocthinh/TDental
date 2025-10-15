@@ -24,9 +24,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Dentelo | Compassionate Dental Care',
+  title: 'TDental | Compassionate Dental Care',
   description:
-    'Dentelo delivers advanced, patient-first dental care with a focus on comfort, technology, and lasting smiles.',
+    'TDental delivers advanced, patient-first dental care with a focus on comfort, technology, and lasting smiles.',
 };
 
 export default function RootLayout({

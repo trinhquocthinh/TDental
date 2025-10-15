@@ -17,13 +17,13 @@ const heroBackground: CSSProperties = {
 };
 
 const heroDescription =
-  'For more than 15 years, Dentelo has delivered compassionate, tech-enabled dentistry that keeps families smiling. We blend clinical excellence with comforting spaces so every visit feels effortless.';
+  'For more than 15 years, TDental has delivered compassionate, tech-enabled dentistry that keeps families smiling. We blend clinical excellence with comforting spaces so every visit feels effortless.';
 
 const missionIntro =
   'We believe great dentistry starts with listening. Every smile has a story, so our clinicians build tailored treatment plans anchored in your goals, lifestyle, and comfort level.';
 
 const missionSupport =
-  "From digital x-rays and 3D scanners to flexible payment plans, we invest in the tools and support that make prevention and restorative care more accessible. It's why 9 in 10 patients refer their friends and family to Dentelo.";
+  "From digital x-rays and 3D scanners to flexible payment plans, we invest in the tools and support that make prevention and restorative care more accessible. It's why 9 in 10 patients refer their friends and family to TDental.";
 
 const carePrinciples = [
   {
@@ -68,9 +68,9 @@ const teamMembers: Array<Doctor & { anchor: string }> = doctors.map(doctor => ({
 }));
 
 export const metadata: Metadata = {
-  title: 'About Dentelo - Dental Care Crafted Around You',
+  title: 'About TDental - Dental Care Crafted Around You',
   description:
-    'Learn how Dentelo blends advanced technology with human warmth to deliver dentistry that feels effortless.',
+    'Learn how TDental blends advanced technology with human warmth to deliver dentistry that feels effortless.',
 };
 
 export default function AboutPage(): ReactElement {
@@ -84,7 +84,7 @@ export default function AboutPage(): ReactElement {
         >
           <div className="container">
             <div className="hero-content">
-              <p className="section-subtitle">About Dentelo</p>
+              <p className="section-subtitle">About TDental</p>
               <h1 className="h1 hero-title">Care Designed Around Your Smile</h1>
               <p className="hero-text">{heroDescription}</p>
               <Link href="#mission" className="btn">
@@ -221,7 +221,7 @@ export default function AboutPage(): ReactElement {
           </div>
         </section>
 
-        <section className="section cta" aria-label="Join Dentelo team">
+        <section className="section cta" aria-label="Join TDental team">
           <div className="container">
             <figure className="cta-banner">
               <Image
@@ -233,7 +233,7 @@ export default function AboutPage(): ReactElement {
               />
             </figure>
             <div className="cta-content">
-              <p className="section-subtitle">Join the Dentelo Family</p>
+              <p className="section-subtitle">Join the TDental Family</p>
               <h2 className="h2 section-title">
                 Schedule a complimentary smile consultation
               </h2>

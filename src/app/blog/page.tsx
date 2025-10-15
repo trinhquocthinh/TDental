@@ -17,9 +17,9 @@ const heroDescription =
   'Expert-written guides, clinical updates, and home-care tips to help you make informed decisions about preventive and cosmetic dentistry.';
 
 export const metadata: Metadata = {
-  title: 'Dentelo Blog - Dental Wellness Guides & News',
+  title: 'TDental Blog - Dental Wellness Guides & News',
   description:
-    'Read the latest evidence-based articles from Dentelo dentists on preventive care, aligner tips, cosmetic smile design, and more.',
+    'Read the latest evidence-based articles from TDental dentists on preventive care, aligner tips, cosmetic smile design, and more.',
 };
 
 export default function BlogPage(): ReactElement {

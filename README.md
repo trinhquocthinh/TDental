@@ -1,6 +1,6 @@
-# Dentelo Dental Clinic – Next.js Rebuild
+# TDental Dental Clinic – Next.js Rebuild
 
-Modernized version of the Dentelo clinic marketing site, migrated from static HTML to **Next.js 14** with **TypeScript** and **SCSS**. The App Router, data-driven components, and reusable design system keep content easy to maintain while preserving the original brand look and feel.
+Modernized version of the TDental clinic marketing site, migrated from static HTML to **Next.js 14** with **TypeScript** and **SCSS**. The App Router, data-driven components, and reusable design system keep content easy to maintain while preserving the original brand look and feel.
 
 ## 🚀 What’s Shipped
 
@@ -14,7 +14,7 @@ Modernized version of the Dentelo clinic marketing site, migrated from static HT
 ## 📂 Key Directories
 
 ```
-dentelo-website/
+TDental-website/
 ├── public/                # Static assets referenced by Next.js
 ├── src/
 │   ├── app/
