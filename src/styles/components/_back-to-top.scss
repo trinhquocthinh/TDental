@@ -1,0 +1,32 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.back-top-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color: $royal-blue-light;
+  font-size: 18px;
+  color: $white;
+  padding: 14px;
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0;
+  transition: $transition;
+  z-index: 10;
+
+  @include tablet-up {
+    bottom: 70px;
+    right: 50px;
+  }
+
+  &.active {
+    transform: translateY(-10px);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+}

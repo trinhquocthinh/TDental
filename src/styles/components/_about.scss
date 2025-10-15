@@ -1,0 +1,39 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.about {
+  padding-block-end: 0;
+
+  .section-text-1 {
+    margin-block: 25px 15px;
+  }
+
+  .btn {
+    font-size: unset;
+    max-width: max-content;
+    margin-block-start: 30px;
+    padding-inline: 24px;
+  }
+
+  .container {
+    @include laptop-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+    }
+
+    @include xl-desktop-up {
+      grid-template-columns: 0.85fr 1fr;
+      gap: 100px;
+    }
+  }
+}
+
+.about-banner {
+  margin-block-end: 50px;
+
+  @include laptop-up {
+    margin-block-end: 0;
+  }
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentelo Services - Comprehensive Dental Care</title>
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Roboto:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <ul class="contact-list">
+          <li class="contact-item">
+            <ion-icon name="mail-outline"></ion-icon>
+            <a href="mailto:info@example.com" class="contact-link">info@example.com</a>
+          </li>
+          <li class="contact-item">
+            <ion-icon name="call-outline"></ion-icon>
+            <a href="tel:+917052101786" class="contact-link">+91-7052-101-786</a>
+          </li>
+        </ul>
+        <ul class="social-list">
+          <li><a href="https://www.facebook.com/dentelo" class="social-link"><ion-icon name="logo-facebook"></ionicon></a></li>
+          <li><a href="https://www.instagram.com/dentelo" class="social-link"><ion-icon name="logo-instagram"></ionicon></a></li>
+          <li><a href="https://twitter.com/dentelo" class="social-link"><ion-icon name="logo-twitter"></ionicon></a></li>
+          <li><a href="https://www.youtube.com/@dentelo" class="social-link"><ion-icon name="logo-youtube"></ionicon></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="header-bottom" data-header>
+      <div class="container">
+        <a href="index.html#home" class="logo">Dentelo.</a>
+
+        <nav class="navbar container" data-navbar>
+          <ul class="navbar-list">
+            <li><a href="index.html#home" class="navbar-link" data-nav-link>Home</a></li>
+            <li><a href="services.html" class="navbar-link active" data-nav-link aria-current="page">Services</a></li>
+            <li><a href="about.html" class="navbar-link" data-nav-link>About Us</a></li>
+            <li><a href="blog.html" class="navbar-link" data-nav-link>Blog</a></li>
+            <li><a href="contact.html" class="navbar-link" data-nav-link>Contact</a></li>
+          </ul>
+        </nav>
+
+        <button type="button" class="btn" data-modal-open>Book appointment</button>
+
+        <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+          <ion-icon name="menu-sharp" aria-hidden="true" class="menu-icon"></ion-icon>
+          <ion-icon name="close-sharp" aria-hidden="true" class="close-icon"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="modal-container" data-modal-container hidden>
+    <div class="modal-overlay" data-modal-overlay data-modal-close></div>
+
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="appointment-title"
+      aria-describedby="appointment-description" data-modal>
+
+      <button type="button" class="modal-close" aria-label="Close appointment form" data-modal-close>
+        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+      <p class="section-subtitle modal-subtitle">Schedule Your Visit</p>
+      <h2 class="h2 modal-title" id="appointment-title">Book a Dental Appointment</h2>
+      <p class="modal-text" id="appointment-description">
+        Share a few details and our care team will reach out to confirm the best time for your visit.
+      </p>
+
+      <form action="" class="modal-form">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="input-name" class="form-label">Full Name</label>
+            <input type="text" name="full_name" id="input-name" placeholder="e.g. Jane Doe" required
+              autocomplete="name" data-focus-default class="input-field">
+          </div>
+
+          <div class="form-field">
+            <label for="input-phone" class="form-label">Phone Number</label>
+            <input type="tel" name="phone" id="input-phone" placeholder="+1 (555) 123-4567" required
+              autocomplete="tel" inputmode="tel" pattern="\+?[0-9()\s-]{7,}" class="input-field">
+          </div>
+
+          <div class="form-field">
+            <label for="input-email" class="form-label">Email Address</label>
+            <input type="email" name="email" id="input-email" placeholder="you@example.com" required
+              autocomplete="email" class="input-field">
+          </div>
+
+          <div class="form-field">
+            <label for="select-service" class="form-label">Service Needed</label>
+            <select name="service" id="select-service" required class="input-field">
+              <option value="" disabled selected>Select a service</option>
+              <option value="root-canal">Root Canal Therapy</option>
+              <option value="alignment">Alignment Teeth</option>
+              <option value="cosmetic">Cosmetic Dentistry</option>
+              <option value="oral-hygiene">Oral Hygiene</option>
+              <option value="advisory">Live Advisory</option>
+              <option value="cavity">Cavity Inspection</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="select-doctor" class="form-label">Preferred Dentist</label>
+            <select name="doctor" id="select-doctor" class="input-field">
+              <option value="" selected>No preference</option>
+              <option value="howard-holmes">Howard Holmes</option>
+              <option value="ella-thompson">Ella Thompson</option>
+              <option value="vincent-cooper">Vincent Cooper</option>
+              <option value="danielle-bryant">Danielle Bryant</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="input-date" class="form-label">Preferred Date</label>
+            <input type="date" name="date" id="input-date" required autocomplete="off" class="input-field">
+          </div>
+
+          <div class="form-field">
+            <label for="input-time" class="form-label">Preferred Time</label>
+            <input type="time" name="time" id="input-time" required autocomplete="off" min="09:00" max="22:00"
+              step="900" class="input-field">
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="input-notes" class="form-label">Notes &amp; Concerns</label>
+            <textarea name="notes" id="input-notes"
+              placeholder="Tell us about symptoms, insurance, or any other preferences..." rows="3"
+              class="input-field"></textarea>
+          </div>
+        </div>
+
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required>
+          <span>I consent to Dentelo storing my information for appointment scheduling.</span>
+        </label>
+
+        <button type="submit" class="btn modal-submit">Submit Request</button>
+        <p class="form-feedback" role="status" aria-live="polite"></p>
+        <p class="form-disclaimer">For urgent dental needs, please call us directly at
+          <a href="tel:+917052101786">+91-7052-101-786</a>.
+        </p>
+      </form>
+
+    </section>
+  </div>
+
+  <main>
+    <article>
+      <section class="section hero" style="background-image: url('./assets/images/service-banner.png')" aria-label="Services hero">
+        <div class="container">
+          <div class="hero-content">
+            <p class="section-subtitle">Our Services</p>
+            <h1 class="h1 hero-title">All-in-One Dental Care for Every Smile</h1>
+            <p class="hero-text">Preventive, restorative, and cosmetic treatments delivered by specialists in one
+              convenient location. Explore how we tailor care for every age and every goal.</p>
+            <a href="#service-root-canal" class="btn">View treatment menu</a>
+          </div>
+          <figure class="hero-banner">
+            <img src="./assets/images/hero-banner.png" width="587" height="839" loading="lazy" alt="Dental tools"
+              class="w-100">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section service" aria-label="Dental services">
+        <div class="container">
+          <p class="section-subtitle text-center">Treatments</p>
+          <h2 class="h2 section-title text-center">Comprehensive Services</h2>
+          <ul class="service-list">
+            <li id="service-root-canal">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-1.png" width="100" height="100" loading="lazy"
+                    alt="Root canal icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Root Canal Therapy</h3>
+                  <p class="card-text">Microscope-guided endodontic therapy preserves natural teeth with gentle
+                    anesthesia options and same-day crowns.</p>
+                </div>
+              </div>
+            </li>
+            <li id="service-alignment">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-2.png" width="100" height="100" loading="lazy"
+                    alt="Alignment icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Clear Aligner Orthodontics</h3>
+                  <p class="card-text">Custom Invisalign&reg; and SureSmile&reg; plans guided by 3D scans ensure faster,
+                    more predictable smile alignment.</p>
+                </div>
+              </div>
+            </li>
+            <li id="service-cosmetic">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-3.png" width="100" height="100" loading="lazy"
+                    alt="Cosmetic icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Cosmetic Smile Design</h3>
+                  <p class="card-text">Whitening, veneers, and bonding treatments are planned digitally so you preview
+                    results before we begin.</p>
+                </div>
+              </div>
+            </li>
+            <li id="service-hygiene">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-4.png" width="100" height="100" loading="lazy"
+                    alt="Hygiene icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Preventive Hygiene</h3>
+                  <p class="card-text">Personalized recall visits include periodontal screenings, fluoride therapies,
+                    and preventive sealants for kids.</p>
+                </div>
+              </div>
+            </li>
+            <li id="service-advisory">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-5.png" width="100" height="100" loading="lazy"
+                    alt="Advisory icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Live Advisory</h3>
+                  <p class="card-text">Connect with our dental concierge for insurance checks, second opinions, and
+                    post-op guidance anytime.</p>
+                </div>
+              </div>
+            </li>
+            <li id="service-cavity">
+              <div class="service-card">
+                <div class="card-icon"><img src="./assets/images/service-icon-6.png" width="100" height="100" loading="lazy"
+                    alt="Cavity icon" class="w-100"></div>
+                <div>
+                  <h3 class="h3 card-title">Cavity Detection &amp; Repair</h3>
+                  <p class="card-text">AI-assisted diagnostics spot decay earlier and tooth-colored fillings blend
+                    seamlessly for natural results.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section about" id="case-studies" aria-label="Patient stories">
+        <div class="container">
+          <figure class="about-banner">
+            <img src="./assets/images/cta-banner.png" width="1056" height="1076" loading="lazy" alt="Patient smiling"
+              class="w-100">
+          </figure>
+          <div class="about-content">
+            <p class="section-subtitle">Patient Stories</p>
+            <h2 class="h2 section-title">Results That Speak for Themselves</h2>
+            <p class="section-text section-text-1">
+              From full-mouth rehabilitations to first-time cleanings, our case reviews highlight measurable
+              improvements in function, confidence, and quality of life.
+            </p>
+            <p class="section-text">
+              Ask about our Smile Preview session where we simulate whitening, alignment, or veneer outcomes in 20
+              minutes so you can pick the path that excites you most.
+            </p>
+            <a href="contact.html#appointment" class="btn">Request a smile preview</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blog" aria-label="Service FAQs">
+        <div class="container">
+          <p class="section-subtitle text-center">FAQs</p>
+          <h2 class="h2 section-title text-center">Answers to Common Questions</h2>
+          <ul class="blog-list">
+            <li>
+              <div class="blog-card">
+                <div class="card-content">
+                  <h3 class="h3"><span class="card-title">Do you accept my insurance?</span></h3>
+                  <p class="card-text">Dentelo partners with major PPO plans and offers flexible in-house membership
+                    plans. Our concierge team verifies benefits before your visit and provides transparent copay estimates.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <div class="card-content">
+                  <h3 class="h3"><span class="card-title">How soon can I get an appointment?</span></h3>
+                  <p class="card-text">Emergency patients are seen same-day. Routine care is typically scheduled within
+                    seven business days, with extended evening hours available Monday through Friday.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="blog-card">
+                <div class="card-content">
+                  <h3 class="h3"><span class="card-title">Is sedation dentistry available?</span></h3>
+                  <p class="card-text">Yes&mdash;we provide nitrous oxide, oral conscious sedation, and IV sedation administered by
+                    board-certified anesthesiologists for complex cases.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section cta" aria-label="Service CTA">
+        <div class="container">
+          <figure class="cta-banner">
+            <img src="./assets/images/cta-banner.png" width="1056" height="1076" loading="lazy" alt="Dental chair"
+              class="w-100">
+          </figure>
+          <div class="cta-content">
+            <p class="section-subtitle">Ready for Better Dental Care?</p>
+            <h2 class="h2 section-title">Let&rsquo;s craft a treatment plan that fits your life</h2>
+            <button type="button" class="btn" data-modal-open>Book appointment</button>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top section">
+      <div class="container">
+        <div class="footer-brand">
+          <a href="index.html#home" class="logo">Dentelo.</a>
+          <p class="footer-text">Mauris non nisi semper, lacinia neque in, dapibus leo. Curabitur sagittis libero tincidunt
+            tempor finibus. Mauris at dignissim ligula, nec tristique orci. Quisque vitae metus.</p>
+          <div class="schedule">
+            <div class="schedule-icon"><ion-icon name="time-outline"></ion-icon></div>
+            <span class="span">Monday - Saturday:<br>9:00am - 10:00pm</span>
+          </div>
+        </div>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Other Links</p></li>
+          <li><a href="index.html#home" class="footer-link"><ion-icon name="add-outline"></ion-icon><span class="span">Home</span></a></li>
+          <li><a href="about.html" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">About Us</span></a></li>
+          <li><a href="services.html" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Services</span></a></li>
+          <li><a href="services.html#case-studies" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Patient Stories</span></a></li>
+          <li><a href="about.html#team" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Our Team</span></a></li>
+          <li><a href="blog.html" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Latest Blog</span></a></li>
+        </ul>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Our Services</p></li>
+          <li><a href="services.html#service-root-canal" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Root Canal</span></a></li>
+          <li><a href="services.html#service-alignment" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Alignment Teeth</span></a></li>
+          <li><a href="services.html#service-cosmetic" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Cosmetic Teeth</span></a></li>
+          <li><a href="services.html#service-hygiene" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Oral Hygiene</span></a></li>
+          <li><a href="services.html#service-advisory" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Live Advisory</span></a></li>
+          <li><a href="services.html#service-cavity" class="footer-link"><ion-icon name="add-outline"></ionicon><span class="span">Cavity Inspection</span></a></li>
+        </ul>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Contact Us</p></li>
+          <li class="footer-item"><div class="item-icon"><ion-icon name="location-outline"></ionicon></div><address class="item-text">1247/Plot No. 39, 15th Phase,<br>LHB Colony, Kanpur</address></li>
+          <li class="footer-item"><div class="item-icon"><ion-icon name="call-outline"></ionicon></div><a href="tel:+917052101786" class="footer-link">+91-7052-101-786</a></li>
+          <li class="footer-item"><div class="item-icon"><ion-icon name="mail-outline"></ionicon></div><a href="mailto:help@example.com" class="footer-link">help@example.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; 2022 All Rights Reserved by codewithsadee.</p>
+        <ul class="social-list">
+          <li><a href="https://www.facebook.com/dentelo" class="social-link"><ion-icon name="logo-facebook"></ionicon></a></li>
+          <li><a href="https://www.instagram.com/dentelo" class="social-link"><ion-icon name="logo-instagram"></ionicon></a></li>
+          <li><a href="https://twitter.com/dentelo" class="social-link"><ion-icon name="logo-twitter"></ionicon></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="caret-up" aria-hidden="true"></ionicon>
+  </a>
+
+  <script src="./assets/js/script.js" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.service {
+  padding-block-end: 0;
+
+  .section-title {
+    margin-block-end: 50px;
+  }
+}
+
+.service-banner {
+  display: none;
+
+  @include laptop-up {
+    display: block;
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    align-self: center;
+  }
+}
+
+.service-list {
+  @include grid-list;
+  gap: 15px;
+
+  @include tablet-up {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+  }
+
+  @include laptop-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  min-height: 100%;
+  border: 1px solid $light-gray;
+  border-radius: $radius-4;
+  padding: 30px;
+  background: $white;
+  transition: box-shadow $transition, transform $transition;
+
+  &:is(:hover, :focus-within) {
+    transform: translateY(-6px);
+    box-shadow: $shadow-5;
+  }
+
+  .card-icon {
+    width: 50px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    margin-block-end: 8px;
+  }
+}
