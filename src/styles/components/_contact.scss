@@ -169,7 +169,9 @@
   color: #155724;
   font-size: 0.9375rem;
   line-height: 1.6;
-  animation: slideDown 0.4s ease, pulse 0.6s ease;
+  animation:
+    slideDown 0.4s ease,
+    pulse 0.6s ease;
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
 
   ion-icon {
