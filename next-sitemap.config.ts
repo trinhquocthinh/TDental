@@ -1,6 +1,7 @@
-/** @type {import('next-sitemap').IConfig} */
-module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://Tournament-agency.com',
+import type { IConfig } from 'next-sitemap';
+
+const config: IConfig = {
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://tdental.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ['/api/*', '/admin/*'],
@@ -13,12 +14,25 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'https://Tournament-agency.com'}/sitemap.xml`,
+      `${process.env.NEXT_PUBLIC_SITE_URL || 'https://tdental.com'}/sitemap.xml`,
     ],
   },
   transform: async (config, path) => {
     // Custom priority and changefreq for different pages
-    const customConfig = {
+    const customConfig: Record<
+      string,
+      {
+        priority: number;
+        changefreq:
+          | 'always'
+          | 'hourly'
+          | 'daily'
+          | 'weekly'
+          | 'monthly'
+          | 'yearly'
+          | 'never';
+      }
+    > = {
       '/': { priority: 1.0, changefreq: 'daily' },
       '/about': { priority: 0.9, changefreq: 'weekly' },
       '/services': { priority: 0.9, changefreq: 'weekly' },
@@ -27,16 +41,18 @@ module.exports = {
       '/contact': { priority: 0.7, changefreq: 'monthly' },
     };
 
-    const config_entry = customConfig[path] || {
+    const configEntry = customConfig[path] || {
       priority: 0.7,
-      changefreq: 'monthly',
+      changefreq: 'monthly' as const,
     };
 
     return {
       loc: path,
-      changefreq: config_entry.changefreq,
-      priority: config_entry.priority,
+      changefreq: configEntry.changefreq,
+      priority: configEntry.priority,
       lastmod: new Date().toISOString(),
     };
   },
 };
+
+export default config;

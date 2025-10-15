@@ -1,11 +1,11 @@
 {
-  "name": "Tournament Esports",
-  "short_name": "Tournament",
-  "description": "Epic Games Made For True Gamers - Tournament Esports Website",
+  "name": "Dentelo - Professional Dental Care",
+  "short_name": "Dentelo",
+  "description": "Your trusted partner for comprehensive dental care - Expert dentists, modern facilities, and personalized treatment plans",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d0d",
-  "theme_color": "#ff0000",
+  "background_color": "#ffffff",
+  "theme_color": "#4461f2",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -15,23 +15,51 @@
       "purpose": "any maskable"
     },
     {
-      "src": "assets/images/logo.png",
+      "src": "/favicon.svg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "assets/images/logo.png",
+      "src": "/favicon.svg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
   "categories": [
-    "entertainment",
-    "games",
-    "sports"
+    "health",
+    "medical",
+    "lifestyle"
   ],
   "lang": "en-US",
-  "dir": "ltr"
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Schedule your dental appointment",
+      "url": "/?action=book",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with our team",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
 }

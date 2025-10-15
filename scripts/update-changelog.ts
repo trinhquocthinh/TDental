@@ -1,38 +1,70 @@
 #!/usr/bin/env node
+/* eslint-disable sonarjs/concise-regex */
+/* eslint-disable sonarjs/os-command */
+/* eslint-disable sonarjs/no-os-command-from-path */
+/* eslint-disable no-console */
+/* eslint-disable security/detect-non-literal-fs-filename */
+/* eslint-disable security/detect-child-process */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+interface Categories {
+  Added: string[];
+  Changed: string[];
+  Deprecated: string[];
+  Removed: string[];
+  Fixed: string[];
+  Security: string[];
+}
+
+type CategoryKey = keyof Categories;
 
 /**
  * Get git commits since the last tag
  */
-function getCommitsSinceLastTag() {
+function getCommitsSinceLastTag(): string[] {
   try {
-    // Get the last tag
-    const lastTag = execSync(
-      'git describe --tags --abbrev=0 2>/dev/null || echo ""',
-      {
-        encoding: 'utf8',
-      }
-    ).trim();
+    // Validate we're in a git repository
+    execSync('git rev-parse --git-dir', { stdio: 'ignore' });
 
-    // Get commits since last tag or all commits if no tag exists
-    const gitCommand = lastTag
-      ? `git log ${lastTag}..HEAD --pretty=format:"%s"`
-      : 'git log --pretty=format:"%s"';
+    // Get the last tag with safe, fixed command
+    const lastTag = execSync('git describe --tags --abbrev=0', {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
+    }).trim();
 
-    const commits = execSync(gitCommand, { encoding: 'utf8' })
+    // Build safe git command with validated tag
+    let gitCommand: string;
+    if (lastTag && /^[a-zA-Z0-9.\-_]+$/.test(lastTag)) {
+      // Validate tag contains only safe characters
+      gitCommand = `git log ${lastTag}..HEAD --pretty=format:%s`;
+    } else {
+      gitCommand = 'git log --pretty=format:%s';
+    }
+
+    const commits = execSync(gitCommand, {
+      encoding: 'utf8',
+      env: { ...process.env, PATH: '/usr/bin:/bin' },
+    })
       .trim()
       .split('\n')
       .filter(Boolean);
 
     return commits;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(
-      '⚠️  Could not fetch git commits, using manual changelog entries'
+    console.error(
+      '⚠️  Git error:',
+      error instanceof Error ? error.message : 'Unknown error'
     );
+    console.log('Using manual changelog entries');
     return [];
   }
 }
@@ -40,8 +72,8 @@ function getCommitsSinceLastTag() {
 /**
  * Parse commits and categorize them based on conventional commit prefixes
  */
-function categorizeCommits(commits) {
-  const categories = {
+function categorizeCommits(commits: string[]): Categories {
+  const categories: Categories = {
     Added: [],
     Changed: [],
     Deprecated: [],
@@ -50,7 +82,7 @@ function categorizeCommits(commits) {
     Security: [],
   };
 
-  const prefixMap = {
+  const prefixMap: Record<string, CategoryKey> = {
     'feat:': 'Added',
     'feature:': 'Added',
     'add:': 'Added',
@@ -122,11 +154,10 @@ function categorizeCommits(commits) {
   return categories;
 }
 
-function updateChangelog(newVersion) {
+function updateChangelog(newVersion: string): void {
   const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
 
   if (!fs.existsSync(changelogPath)) {
-    // eslint-disable-next-line no-console
     console.log('⚠️  CHANGELOG.md not found, skipping update');
     return;
   }
@@ -143,7 +174,6 @@ function updateChangelog(newVersion) {
   );
 
   if (unreleasedIndex === -1) {
-    // eslint-disable-next-line no-console
     console.log('⚠️  [Unreleased] section not found in CHANGELOG.md');
     return;
   }
@@ -165,7 +195,7 @@ function updateChangelog(newVersion) {
   const unreleasedContent = lines.slice(unreleasedIndex + 1, nextVersionIndex);
 
   // Parse existing unreleased content by category
-  const existingCategories = {
+  const existingCategories: Categories = {
     Added: [],
     Changed: [],
     Deprecated: [],
@@ -174,11 +204,11 @@ function updateChangelog(newVersion) {
     Security: [],
   };
 
-  let currentCategory = '';
+  let currentCategory: CategoryKey | '' = '';
   unreleasedContent.forEach(line => {
     const trimmed = line.trim();
     if (trimmed.startsWith('### ')) {
-      const category = trimmed.substring(4);
+      const category = trimmed.substring(4) as CategoryKey;
       if (existingCategories.hasOwnProperty(category)) {
         currentCategory = category;
       }
@@ -188,8 +218,16 @@ function updateChangelog(newVersion) {
   });
 
   // Merge git commits with existing entries (avoid duplicates)
-  const mergedCategories = {};
-  Object.keys(existingCategories).forEach(category => {
+  const mergedCategories: Record<CategoryKey, string[]> = {
+    Added: [],
+    Changed: [],
+    Deprecated: [],
+    Removed: [],
+    Fixed: [],
+    Security: [],
+  };
+
+  (Object.keys(existingCategories) as CategoryKey[]).forEach(category => {
     const combined = [
       ...existingCategories[category],
       ...gitCategories[category],
@@ -204,18 +242,18 @@ function updateChangelog(newVersion) {
   const newVersionSection = [`## [${newVersion}] - ${currentDate}`, ''];
 
   let hasContent = false;
-  ['Added', 'Changed', 'Fixed', 'Removed', 'Deprecated', 'Security'].forEach(
-    category => {
-      if (mergedCategories[category].length > 0) {
-        hasContent = true;
-        newVersionSection.push(`### ${category}`, '');
-        mergedCategories[category].forEach(item => {
-          newVersionSection.push(`- ${item}`);
-        });
-        newVersionSection.push('');
-      }
+  (
+    ['Added', 'Changed', 'Fixed', 'Removed', 'Deprecated', 'Security'] as const
+  ).forEach(category => {
+    if (mergedCategories[category].length > 0) {
+      hasContent = true;
+      newVersionSection.push(`### ${category}`, '');
+      mergedCategories[category].forEach(item => {
+        newVersionSection.push(`- ${item}`);
+      });
+      newVersionSection.push('');
     }
-  );
+  });
 
   // Create new unreleased section
   const newUnreleasedSection = [
@@ -247,12 +285,9 @@ function updateChangelog(newVersion) {
   fs.writeFileSync(changelogPath, newLines.join('\n'));
 
   if (hasContent) {
-    // eslint-disable-next-line no-console
     console.log(`✅ CHANGELOG.md updated with version ${newVersion}`);
-    // eslint-disable-next-line no-console
     console.log(`📝 Processed ${commits.length} commits from git history`);
   } else {
-    // eslint-disable-next-line no-console
     console.log(
       `✅ CHANGELOG.md updated with version ${newVersion} (no changes found)`
     );
@@ -262,7 +297,6 @@ function updateChangelog(newVersion) {
 // Get version from command line argument
 const newVersion = process.argv[2];
 if (!newVersion) {
-  // eslint-disable-next-line no-console
   console.error('❌ Error: Version argument required');
   process.exit(1);
 }

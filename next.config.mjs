@@ -119,7 +119,7 @@ const nextConfig = {
   // Environment variables that should be available on the client
   env: {
     NEXT_PUBLIC_SITE_URL:
-      process.env.NEXT_PUBLIC_SITE_URL || 'https://Tournament-agency.com',
+      process.env.NEXT_PUBLIC_SITE_URL || 'https://tdental.com',
     NEXT_PUBLIC_BASE_PATH: publicBasePath || '',
   },
 

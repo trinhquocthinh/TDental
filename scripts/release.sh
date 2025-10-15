@@ -51,7 +51,7 @@ echo "🎉 New version: $NEW_VERSION"
 # Update changelog automatically
 if [ -f "CHANGELOG.md" ]; then
   echo "📝 Automatically updating CHANGELOG.md..."
-  node scripts/update-changelog.cjs "$NEW_VERSION"
+  npx tsx scripts/update-changelog.ts "$NEW_VERSION"
 fi
 
 # Commit version changes
