@@ -51,6 +51,7 @@ const contactSchema = yup.object().shape({
     .string()
     .required('Please enter your phone number')
     .matches(
+      // eslint-disable-next-line sonarjs/single-char-in-character-classes
       /^[+]?[(]?\d{1,4}[)]?[-\s.]?[(]?\d{1,4}[)]?[-\s.]?\d{1,9}$/,
       'Please enter a valid phone number'
     ),
